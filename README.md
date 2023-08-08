@@ -36,9 +36,7 @@ Things you may want to cover:
 | first_name         | string  | null: false              |
 | lase_name_kana     | string  | null: false              |
 | first_name_kana    | string  | null: false              |
-| year               | integer | null: false              |
-| month              | integer | null: false              |
-| day                | integer | null: false              |
+| birthday           | date    | null: false              |
 
 ### Association
 
@@ -47,21 +45,26 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | -----------------------------  |
-| user      | references | null: false, foreign_key: true |
-| name      | string     | null: false                    |
-| content   | text       | null: false                    |
-| category  | string     | null: false                    |
-| status    | string     | null: false                    |
-| cost      | integer    | null: false                    |
-| area      | string     | null: false                    |
-| day       | integer    | null: false                    |
-| price     | integer    | null: false                    |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | -----------------------------  |
+| user        | references | null: false, foreign_key: true |
+| name        | string     | null: false                    |
+| content     | text       | null: false                    |
+| category_id | integer    | null: false                    |
+| status_id   | integer    | null: false                    |
+| cost_id     | integer    | null: false                    |
+| area_id     | integer    | null: false                    |
+| day_id      | integer    | null: false                    |
+| price       | integer    | null: false                    |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :category
+- belongs_to :status
+- belongs_to :cost
+- belongs_to :area
+- belongs_to :day
 - has_one :buy
 
 ## buys テーブル
@@ -74,22 +77,51 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- belongs_to :comment
+- belongs_to :buy
 - has_one :delivery
 
-## deliverys テーブル
+## deliveries テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | -----------------------------  |
 | buy       | references | null: false, foreign_key: true |
-| postcode  | integer    | null: false                    |
-| are       | string     | null: false                    |
+| postcode  | string     | null: false                    |
+| area_id   | integer    | null: false                    |
 | city      | string     | null: false                    |
 | address   | string     | null: false                    |
-| building  | string     | null: false                    |
+| building  | string     |                                |
 | telephone | integer    | null: false                    |
 
 
 ### Association
 
 - belongs_to :buy
+- belongs_to :area
+
+# ActiveHash
+
+## category
+
+### Association
+- has_many :items
+
+## status
+
+### Association
+- has_many :items
+
+## cost
+
+### Association
+- has_many :items
+
+## day
+
+### Association
+- has_many :items
+
+## area
+
+### Association
+- has_many :items
+- has_many :deliveries
