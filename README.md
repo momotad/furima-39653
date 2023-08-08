@@ -22,3 +22,74 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル設計
+
+## users テーブル
+
+| Column             | Type    | Options                  |
+| ------------------ | ------  | ------------------------ |
+| nickname           | string  | null: false              |
+| email              | string  | null: false, unique:true |
+| encrypted_password | string  | null: false              |
+| last_name          | string  | null: false              |
+| first_name         | string  | null: false              |
+| lase_name_kana     | string  | null: false              |
+| first_name_kana    | string  | null: false              |
+| year               | integer | null: false              |
+| month              | integer | null: false              |
+| day                | integer | null: false              |
+
+### Association
+
+- has_many :items
+- has_many :buys
+
+## items テーブル
+
+| Column    | Type       | Options                        |
+| --------- | ---------- | -----------------------------  |
+| user      | references | null: false, foreign_key: true |
+| name      | string     | null: false                    |
+| content   | text       | null: false                    |
+| category  | string     | null: false                    |
+| status    | string     | null: false                    |
+| cost      | integer    | null: false                    |
+| area      | string     | null: false                    |
+| day       | integer    | null: false                    |
+| price     | integer    | null: false                    |
+
+### Association
+
+- belongs_to :user
+- has_one :buy
+
+## buys テーブル
+
+| Column     | Type       | Options                        |
+| -----------| ------     | ------------------------------ |
+| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :comment
+- has_one :delivery
+
+## deliverys テーブル
+
+| Column    | Type       | Options                        |
+| --------- | ---------- | -----------------------------  |
+| buy       | references | null: false, foreign_key: true |
+| postcode  | integer    | null: false                    |
+| are       | string     | null: false                    |
+| city      | string     | null: false                    |
+| address   | string     | null: false                    |
+| building  | string     | null: false                    |
+| telephone | integer    | null: false                    |
+
+
+### Association
+
+- belongs_to :buy
