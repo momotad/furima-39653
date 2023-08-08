@@ -77,7 +77,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- belongs_to :buy
+- belongs_to :item
 - has_one :delivery
 
 ## deliveries テーブル
@@ -90,7 +90,7 @@ Things you may want to cover:
 | city      | string     | null: false                    |
 | address   | string     | null: false                    |
 | building  | string     |                                |
-| telephone | integer    | null: false                    |
+| telephone | string     | null: false                    |
 
 
 ### Association
