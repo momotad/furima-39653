@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers' }
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers' }
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々]+\z/
 
   with_options presence: true do
