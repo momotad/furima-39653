@@ -13,8 +13,8 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :last_name, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
     validates :first_name, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
-    validates :last_name_kana, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
-    validates :first_name_kana, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
+    validates :last_name_kana, format: { with: /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/, message: 'Full-width characters.' }
+    validates :first_name_kana, format: { with: /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/, message: 'Full-width characters.' }
   end
 
   validates :birthday, presence: true
