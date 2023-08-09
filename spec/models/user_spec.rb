@@ -91,12 +91,12 @@ RSpec.describe User, type: :model do
       it 'お名前カナ（全角）の名字が漢字・ひらがな・カタカナ以外' do
         @user.last_name_kana = 'nihon'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name kana Full-width characters.')
+        expect(@user.errors.full_messages).to include('Last name kana Input full-width katakana characters.')
       end
       it 'お名前カナ（全角）の名前が漢字・ひらがな・カタカナ以外' do
         @user.first_name_kana = 'osaka'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name kana Full-width characters.')
+        expect(@user.errors.full_messages).to include('First name kana Input full-width katakana characters.')
       end
       it 'お名前カナ（全角）の名字が空白' do
         @user.last_name_kana = ''
@@ -113,6 +113,11 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
+      # it '生まれた月日が空白' do
+      #   @user.birthday = '1991'
+      #   @user.valid?
+      #   expect(@user.errors.full_messages).to include("Birthday can't be blank")
+      # end
     end
   end
 end
