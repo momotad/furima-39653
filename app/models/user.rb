@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :buys
 
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers' }
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々]+\z/
