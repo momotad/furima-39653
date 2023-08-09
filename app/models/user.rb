@@ -11,11 +11,17 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :email,presence: true, uniqueness: true
-  validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'Include both letters and numbers'}
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: 'Include both letters and numbers'}
+  VALID_NAME_REGEX =/\A[ぁ-んァ-ン一-龥々]+\z/
+
+  with_options presence: true do
+  validates :last_name, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
+  validates :first_name, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
+  validates :last_name_kana, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
+  validates :first_name_kana, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
+  end
+
   validates :birthday, presence: true
 
 end
