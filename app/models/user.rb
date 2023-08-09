@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :email,presence: true, uniqueness: true
-  validates :encrypted_password, presence: true
+  validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'Include both letters and numbers'}
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :last_name_kana, presence: true
