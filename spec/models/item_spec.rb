@@ -58,6 +58,26 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range & Input half-width characters')
       end
+      it '価格が空' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is out of setting range & Input half-width characters')
+      end
+      it '価格が299円以下' do
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is out of setting range & Input half-width characters')
+      end
+      it '価格が10000000円以上' do
+        @item.price = '10000000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is out of setting range & Input half-width characters')
+      end
+      it 'ユーザーが紐づいていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
     end
   end
 end
