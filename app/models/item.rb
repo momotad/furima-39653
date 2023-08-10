@@ -21,6 +21,6 @@ class Item < ApplicationRecord
   validates :cost_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :day_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true, numericality: { in: 300..9999999, message: " is out of setting range " },format: { with: /\A[0-9]+\z/, message: " Input half-width characters " }
+  validates :price, presence: true, numericality: { in: 300..9999999, message: "is out of setting range & Input half-width characters" }
 
 end
