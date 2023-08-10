@@ -10,9 +10,10 @@ class Item < ApplicationRecord
     belongs_to :cost
     belongs_to :area
     belongs_to :day
-    
+
 
   validates :user, presence: true
+  validates :image, presence: true
   validates :name, presence: true
   validates :content, presence: true
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
@@ -20,7 +21,6 @@ class Item < ApplicationRecord
   validates :cost_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :day_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true
-  validates :image, presence: true
+  validates :price, presence: true, numericality: { in: 300..9999999, message: " is out of setting range " },format: { with: /\A[0-9]+\z/, message: " Input half-width characters " }
 
 end
