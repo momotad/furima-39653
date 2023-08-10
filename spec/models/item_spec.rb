@@ -54,13 +54,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Day can't be blank")
       end
       it '価格が全角数字' do
-        @item.price = "１０００"
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range & Input half-width characters")
+        expect(@item.errors.full_messages).to include('Price is out of setting range & Input half-width characters')
       end
-
     end
-
   end
-
 end
