@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :day
 
-  validates :user, presence: true
   validates :image, presence: true
   validates :name, presence: true
   validates :content, presence: true
