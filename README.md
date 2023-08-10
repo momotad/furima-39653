@@ -66,6 +66,7 @@ Things you may want to cover:
 - belongs_to :area
 - belongs_to :day
 - has_one :buy
+- has_one_attached :image
 
 ## buys テーブル
 
