@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     belongs_to :cost
     belongs_to :area
     belongs_to :day
-  end
+    
 
   validates :user, presence: true
   validates :name, presence: true
@@ -21,5 +21,6 @@ class Item < ApplicationRecord
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :day_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :price, presence: true
+  validates :image, presence: true
 
 end
