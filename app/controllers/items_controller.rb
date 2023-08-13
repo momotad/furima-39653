@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if@item.update(item_params)
+    if @item.update(item_params)
       redirect_to item_path
     else
       render :edit, status: :unprocessable_entity
@@ -41,10 +41,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if user_signed_in? && current_user.id == @item.user.id
-      @item.destroy
-      redirect_to '/'
-    end
+    return unless user_signed_in? && current_user.id == @item.user.id
+
+    @item.destroy
+    redirect_to '/'
   end
 
   private
@@ -56,6 +56,7 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if current_user.id
+
     redirect_to action: :index
   end
 
