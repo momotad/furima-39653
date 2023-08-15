@@ -10,5 +10,4 @@ class Delivery < ApplicationRecord
   # validates :city, presence: true
   # validates :address, presence: true
   # validates :telephone, presence: true, format: { with: ^0[789]0[\d]{7,8}$, message: 'Input only number' }
-
 end
