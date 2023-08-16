@@ -4,11 +4,6 @@ class BuysController < ApplicationController
   before_action :move_to_index, only: [:index]
 
   def index
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @buy_delivery = BuyDelivery.new
-  end
-
-  def new
     @buy_delivery = BuyDelivery.new
   end
 
@@ -33,6 +28,7 @@ class BuysController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def move_to_index
