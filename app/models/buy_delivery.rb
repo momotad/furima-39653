@@ -14,7 +14,7 @@ class BuyDelivery
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
-    buy = Buy.create(user_id:, item_id: item_id.id)
+    buy = Buy.create(user_id: user_id, item_id: item_id)
     Delivery.create(postcode:, area_id:, city:, address:, building:, telephone:,
                     buy_id: buy.id)
   end
