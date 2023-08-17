@@ -9,7 +9,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer :cost_id,     null: false
       t.integer :area_id,     null: false
       t.integer :day_id,      null: false
-      t.integer :price,       null: false, default: ""
+      t.integer :price,       null: false
       t.timestamps
     end
   end
